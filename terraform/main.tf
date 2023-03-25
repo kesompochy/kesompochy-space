@@ -3,7 +3,7 @@ provider "google" {
 }
 
 resource "google_container_cluster" "cluster" {
-  name               = "kesompochy-page"
+  name               = "kesompochy-space"
   location           = "us-central1-a"
   initial_node_count = 3
 
