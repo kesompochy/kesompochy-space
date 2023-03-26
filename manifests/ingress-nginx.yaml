@@ -359,10 +359,6 @@ spec:
                   fieldPath: metadata.namespace
             - name: LD_PRELOAD
               value: /usr/local/lib/libmimalloc.so
-            - name: NGINX_DEFAULT_ENABLE_SSL_PASSTHROUGH
-              value: "true"
-            - name: NGINX_DEFAULT_SSL_CERTIFICATE
-              value: default/my-tls-secret
           livenessProbe:
             failureThreshold: 5
             httpGet:

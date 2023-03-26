@@ -40,7 +40,7 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 80
-  type: NodePort
+  type: ClusterIP
 
 ---
 apiVersion: v1
@@ -52,9 +52,12 @@ data:
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Welcome to nginx!</title>
+        <title>Welcome to kesompochy-space!</title>
+        <meta charset="UTF-8">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1200773173710092"
+         crossorigin="anonymous"></script>
       </head>
       <body>
-        <h1>Hello, World!</h1>
+        <h1>ふわふわのアザラシ</h1>
       </body>
     </html>
