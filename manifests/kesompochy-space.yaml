@@ -36,11 +36,11 @@ spec:
   selector:
     app: nginx
   ports:
-    - name: http
-      protocol: TCP
+    - protocol: TCP
       port: 80
       targetPort: 80
-  type: ClusterIP
+      nodePort: 31080
+  type: NodePort
 
 ---
 apiVersion: v1
@@ -61,3 +61,32 @@ data:
         <h1>ふわふわのアザラシ</h1>
       </body>
     </html>
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kesompochy-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: kesompochy.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
