@@ -74,7 +74,7 @@ resource "google_compute_firewall" "allow_nodeport_traffic" {
 
   allow {
     protocol = "tcp"
-    ports    = ["30080", "80", "443"]
+    ports    = ["30080", "30443", "80", "443"]
   }
 
   source_ranges = ["35.191.0.0/16"]
@@ -100,12 +100,44 @@ resource "google_compute_instance_group" "worker_group" {
     name = "http"
     port = 30080
   }
+
+  named_port {
+    name = "https"
+    port = 30443
+  }
 }
 
 resource "google_compute_backend_service" "backend_service" {
   name = "lb"
   protocol = "TCP"
   port_name = "http"
+  timeout_sec = 30
+  enable_cdn = false
+
+  backend {
+    balancing_mode = "UTILIZATION"
+    group = google_compute_instance_group.worker_group.self_link
+    capacity_scaler = 1
+    max_connections = 0
+    max_connections_per_instance = 0
+    max_connections_per_endpoint = 0
+    max_rate = 0
+    max_rate_per_instance = 0
+    max_rate_per_endpoint = 0
+    max_utilization = 0.8
+  }
+
+  timeouts {}
+
+  health_checks = [
+    google_compute_health_check.health_check.self_link
+  ]
+}
+
+resource "google_compute_backend_service" "backend_service_https" {
+  name = "lb-https"
+  protocol = "TCP"
+  port_name = "https"
   timeout_sec = 30
   enable_cdn = false
 
@@ -150,7 +182,7 @@ resource "google_compute_target_tcp_proxy" "target_tcp_proxy_80" {
 
 resource "google_compute_target_tcp_proxy" "target_tcp_proxy_443" {
   name = "lb-target-proxy-4"
-  backend_service = google_compute_backend_service.backend_service.self_link
+  backend_service = google_compute_backend_service.backend_service_https.self_link
   timeouts {}
 }
 
