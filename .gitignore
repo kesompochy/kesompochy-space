@@ -35,3 +35,5 @@ terraform.rc
 
 tls.crt
 tls.key
+
+manifests/helmfiles/helmfile-template.yaml
