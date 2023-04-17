@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "manifests/helmfiles/**"
+    #paths:
+    #  - "manifests/helmfiles/**"
 
 jobs:
   generate-helmfile-template:
@@ -13,9 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v2
 
       - name: Set up Helm
         uses: azure/setup-helm@v3
