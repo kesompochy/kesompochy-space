@@ -42,4 +42,4 @@ jobs:
           git config --local user.name "GitHub Actions Bot"
           git add manifests/helmfiles/helmfile-template.yaml
           git commit -m "Update helmfile-template.yaml" || true
-          git -c "http.extraheader=Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" push origin main
+          git push -f origin main
