@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/kesompochy/kesompochy-space
     targetRevision: HEAD
-    path: manifests/kesompochy-space.yaml
+    path: manifests/kesompochy-space
   syncPolicy:
     automated:
       prune: true
