@@ -1,0 +1,41 @@
+name: Helmfile Template
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "manifests/helmfiles/**"
+
+jobs:
+  generate-helmfile-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: "latest"
+
+      - name: Set up Helmfile
+        run: |
+          VERSION=$(curl --silent https://api.github.com/repos/roboll/helmfile/releases/latest | jq '.tag_name' | sed 's/v//; s/"//g')
+          wget https://github.com/roboll/helmfile/releases/download/v${VERSION}/helmfile_linux_amd64
+          sudo mv helmfile_linux_amd64 /usr/local/bin/helmfile
+          sudo chmod +x /usr/local/bin/helmfile
+
+      - name: Generate Helmfile template
+        run: |
+          cd manifests/helmfiles
+          helmfile template > helmfile-template.yaml
+
+      - name: Commit helmfile-template.yaml
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "GitHub Actions Bot"
+          git add manifests/helmfiles/helmfile-template.yaml
+          git commit -m "Update helmfile-template.yaml" || true
+          git push origin main

@@ -1,0 +1,2 @@
+resources:
+  - helmfile-template.yaml
