@@ -1,0 +1,14 @@
+repositories:
+  - name: argo-cd
+    url: https://argoproj.github.io/argo-helm
+
+helmDefaults:
+  timeout: 300
+  atomic: true
+  wait: true
+
+releases:
+  - name: argocd
+    namespace: argocd
+    chart: argo-cd/argo-cd
+    version: 5.29.1

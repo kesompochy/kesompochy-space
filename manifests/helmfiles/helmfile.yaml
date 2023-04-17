@@ -1,0 +1,4 @@
+helmfiles:
+  - path: ./argocd/helmfile.yaml
+  - path: ./cert-manager/helmfile.yaml
+  - path: ./ingress-nginx/helmfile.yaml
