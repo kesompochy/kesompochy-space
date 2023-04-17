@@ -42,5 +42,4 @@ jobs:
           git config --local user.name "GitHub Actions Bot"
           git add manifests/helmfiles/helmfile-template.yaml
           git commit -m "Update helmfile-template.yaml" || true
-          git remote set-url origin https://${GITHUB_TOKEN}@github.com/kesompochy/kesompochy-space.git
-          git push origin main
+          git -c "http.extraheader=Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" push origin main
