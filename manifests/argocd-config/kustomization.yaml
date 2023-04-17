@@ -2,3 +2,4 @@ resources:
   - ./argocd-config.yaml
   - ./kesompochy-space.yaml
   - ./crds.yaml
+  - ./helmfiles.yaml
