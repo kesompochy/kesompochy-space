@@ -1,2 +1,2 @@
 resources:
-  - helmfile-template.yaml
+  - dumped_helmfile_template.yaml
