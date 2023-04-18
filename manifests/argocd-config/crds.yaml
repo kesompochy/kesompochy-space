@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/kesompochy/kesompochy-space
-    targetRevision: releaese
+    targetRevision: release
     path: manifests/crds
   syncPolicy:
     automated:
