@@ -42,6 +42,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions Bot"
           git switch release
+          git merge master
           git add manifests/helmfiles/helmfile-template.yaml
           git diff --quiet && git diff --staged --quiet || git commit -m "Update helmfile-template.yaml [skip ci]"
           git push origin release --force

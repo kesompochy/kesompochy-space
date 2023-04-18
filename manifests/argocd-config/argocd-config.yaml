@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/kesompochy/kesompochy-space
-    targetRevision: HEAD
+    targetRevision: release
     path: manifests/argocd-config
   syncPolicy:
     automated:
