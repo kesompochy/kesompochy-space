@@ -31,14 +31,13 @@ jobs:
       - name: Generate Helmfile template
         run: |
           cd manifests/helmfiles
-          helmfile template > dumped_helmfiletemplate.yaml
+          helmfile template > dumped_helmfile_template.yaml
 
       - name: Commit helmfile-template.yaml
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions Bot"
           git switch -c release
-          git merge main
           git add manifests/helmfiles/dumped_helmfile_template.yaml
           git diff --quiet && git diff --staged --quiet || git commit -m "Update dumped_helmfile_template.yaml [skip ci]"
           git push origin release --force
