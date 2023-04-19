@@ -38,6 +38,7 @@ jobs:
           sudo chmod +x /usr/local/bin/helmfile
           cd manifests/helmfiles
           helmfile template > dumped_helmfile_template.yaml
+          cd ../../
           git add manifests/helmfiles/dumped_helmfile_template.yaml
           git diff --quiet && git diff --staged --quiet || git commit -m "Update dumped_helmfile_template.yaml [skip ci]"
 
