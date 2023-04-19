@@ -12,6 +12,19 @@ spec:
       labels:
         app: private-registry
     spec:
+      initContainers:
+        - name: prepare-htpasswd
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args:
+            [
+              "mkdir -p /auth && cp /tmp/auth/htpasswd /auth/htpasswd && chown 1001:1001 /auth/htpasswd && chmod 666 /auth/htpasswd",
+            ]
+          volumeMounts:
+            - name: auth
+              mountPath: /auth
+            - name: tmp-auth
+              mountPath: /tmp/auth
       containers:
         - name: private-registry
           image: registry:2
@@ -21,24 +34,16 @@ spec:
             - name: REGISTRY_AUTH
               value: htpasswd
             - name: REGISTRY_AUTH_HTPASSWD_PATH
-              value: /tmp/auth/htpasswd
+              value: /auth/htpasswd
             - name: REGISTRY_AUTH_HTPASSWD_REALM
               value: "Registry Realm"
           volumeMounts:
             - name: auth
-              mountPath: /tmp/auth
-          command: ["/bin/sh"]
-          args:
-            [
-              "-c",
-              "mkdir -p /auth && cp /tmp/auth/htpasswd /auth/pt@asswd && chmod 666 /auth/htpasswd && /entrypoint.sh /etc/docker/registry/config.yml",
-            ]
-          lifecycle:
-            postStart:
-              exec:
-                command: ["/bin/sh", "-c", "chown -R 1001:1001 /tmp/auth"]
+              mountPath: /auth
       volumes:
         - name: auth
+          emptyDir: {}
+        - name: tmp-auth
           secret:
             secretName: registry-auth-secret
 
