@@ -31,7 +31,7 @@ spec:
           args:
             [
               "-c",
-              "cp /tmp/auth/htpasswd /auth/pt@asswd && chmod 666 /auth/htpasswd && /entrypoint.sh /etc/docker/registry/config.yml",
+              "mkdir -p /auth && cp /tmp/auth/htpasswd /auth/pt@asswd && chmod 666 /auth/htpasswd && /entrypoint.sh /etc/docker/registry/config.yml",
             ]
           lifecycle:
             postStart:
