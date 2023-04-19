@@ -22,6 +22,8 @@ spec:
           volumeMounts:
             - name: html
               mountPath: /usr/share/nginx/html
+          imagePullSecrets:
+            - name: registry-auth-secret
       volumes:
         - name: html
           configMap:
