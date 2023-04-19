@@ -39,3 +39,5 @@ tls.key
 manifests/helmfiles/helmfile-template.yaml
 
 .auth
+
+app/node_modules
