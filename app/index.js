@@ -6,7 +6,7 @@ app.get("/", (req, res) => {
   res.send("ふわふわのアザラシ　セカンドシーズン　改");
 });
 
-app.get("toilet", (req, res) => {
+app.get("/toilet", (req, res) => {
   res.send("kesompochyの排泄物コーナー");
 });
 
