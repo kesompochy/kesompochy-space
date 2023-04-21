@@ -19,7 +19,9 @@ jobs:
           fetch-depth: 0
 
       - name: Fetch Git tags
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+        run: |
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          git tag -l
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
