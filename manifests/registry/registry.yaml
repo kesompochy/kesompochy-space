@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: private-registry
+  labels:
+    app: private-registry
 spec:
   replicas: 1
   selector:
@@ -56,19 +58,20 @@ metadata:
     cert-manager.io/issuer: "containers-letsencrypt"
 spec:
   tls:
-  - hosts:
-    - containers.kesompochy.space
-    secretName: containers-kesompochy-tls
-- hots: containers.kesompochy.space
-  http:
-    paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: private-registry
-            port:
-              number: 80
+    - hosts:
+        - containers.kesompochy.space
+      secretName: containers-kesompochy-tls
+  rules:
+    - hots: containers.kesompochy.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: private-registry
+                port:
+                  number: 80
 
 ---
 apiVersion: cert-manager.io/v1
@@ -81,6 +84,6 @@ spec:
     privateKeySecretRef:
       name: containers-kesompochy-tls
     solvers:
-    - http01:
-        ingress:
-          class: nginx
+      - http01:
+          ingress:
+            class: nginx
