@@ -29,8 +29,7 @@ jobs:
           git config user.email "actions@github.com"
           git fetch origin temp-build:temp-build || echo "temp-build branch not found"
           git fetch origin temp-dump:temp-dump || echo "temp-dump branch not found"
-          git fetch origin release:release
-          git switch release
+          git switch -c release
           if git rev-parse --verify temp-build; then
             git merge --no-ff --allow-unrelated-histories temp-build -m "Merge build changes"
             git push origin --delete temp-build || echo "temp-build branch not found"
@@ -40,4 +39,4 @@ jobs:
             git push origin --delete temp-dump || echo "temp-dump branch not found"
           fi
           git merge main --no-ff -m "Release changes"
-          git push origin release
+          git push origin release --force

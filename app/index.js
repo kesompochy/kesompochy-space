@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/toilet", (req, res) => {
-  res.send("kesompochyのトイレ");
+  res.send("トイレ");
 });
 
 const port = 80;
