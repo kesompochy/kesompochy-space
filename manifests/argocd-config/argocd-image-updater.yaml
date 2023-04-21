@@ -1,21 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kesompochy-space
+  name: crds
   namespace: argocd
-  annotaions:
-    argocd-image-updater.argoproj.io/write-back-method: argocd
-    argocd-image-updater.argoproj.io/image-list: kesompochy-space-app=containers.kesompochy.space/kesompochy-space-app:latest
-    argocd-image-updater.argoproj.io/my-image.update-strategy: latest
 spec:
   destination:
-    namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://github.com/kesompochy/kesompochy-space
     targetRevision: release
-    path: manifests/kesompochy-space
+    path: manifests/crds
   syncPolicy:
     automated:
       prune: true
