@@ -78,5 +78,4 @@ jobs:
           git tag ${{ steps.bump_version.outputs.NEW_VERSION }}
           git push origin --tags
           git switch -c release
-          git pull origin release
           git push origin release --force
