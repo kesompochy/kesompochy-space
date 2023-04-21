@@ -6,7 +6,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const port = 80;
+const port = 8080;
 app.listen(port, () => {
   console.log(`Server is runnig at port ${port}`);
 });
