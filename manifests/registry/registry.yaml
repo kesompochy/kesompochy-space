@@ -56,7 +56,7 @@ metadata:
   name: private-registry
   annotations:
     cert-manager.io/cluster-issuer: "containers-letsencrypt"
-    nginx.ingress.kubernetes.io/proxy-body-size: "500m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "1024m"
 spec:
   tls:
     - hosts:
