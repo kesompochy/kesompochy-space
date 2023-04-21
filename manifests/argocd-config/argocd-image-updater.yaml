@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/kesompochy/kesompochy-space
     targetRevision: release
-    path: manifests/crds
+    path: manifests/argocd-image-updater
   syncPolicy:
     automated:
       prune: true
