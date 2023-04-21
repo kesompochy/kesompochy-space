@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/toilet", (req, res) => {
-  res.send("kesompochyの排泄物コーナー");
+  res.send("排泄物コーナー");
 });
 
 const port = 80;

@@ -10,9 +10,6 @@ on:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
-    retry:
-      max-attempts: 3
-      delay-minutes: 1
 
     steps:
       - name: Checkout repository
