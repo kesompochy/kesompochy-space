@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-helmfile-template:
+  dump-helmfile-template:
     runs-on: ubuntu-latest
 
     steps:
@@ -51,3 +51,20 @@ jobs:
         run: |
           git switch -c temp-dump
           git push origin temp-dump
+
+  cleanup:
+    needs: dump-helmfile-template
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Cleanup temp-dump branch
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@users.noreply.github.com'
+          git fetch origin temp-dump:temp-dump || echo "temp-dump branch not found"
+          git push origin --delete temp-dump || echo "temp-dump branch not found"

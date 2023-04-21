@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_and_push:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -77,3 +77,20 @@ jobs:
           git push origin --tags
           git switch -c temp-build
           git push origin temp-build
+
+  cleanup:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Cleanup temp-build branch
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@users.noreply.github.com'
+          git fetch origin temp-build:temp-build || echo "temp-build branch not found"
+          git push origin --delete temp-build || echo "temp-build branch not found"
