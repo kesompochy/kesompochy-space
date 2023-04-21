@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 0
 
       - name: Fetch Git tags
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
