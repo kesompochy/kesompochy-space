@@ -50,5 +50,4 @@ jobs:
       - name: Commit helmfile-template.yaml
         run: |
           git switch -c release
-          git merge main
-          git push origin release
+          git push origin release --force
