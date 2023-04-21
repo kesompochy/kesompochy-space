@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - manifests/**
-      - !manifests/helmfiles/**
+      - "manifests/**"
+      - "!manifests/helmfiles/**"
   workflow_run:
     workflows: ["Build-and-Push", "Dump-Helmfile-Template"]
     types:

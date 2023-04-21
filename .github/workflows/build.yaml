@@ -76,7 +76,7 @@ jobs:
           git tag ${{ steps.bump_version.outputs.NEW_VERSION }}
           git push origin --tags
           git switch -c temp-build
-          git push origin temp-build
+          git push origin temp-build --force
 
   cleanup:
     needs: build-and-push

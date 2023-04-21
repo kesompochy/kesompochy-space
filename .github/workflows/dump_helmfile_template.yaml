@@ -50,7 +50,7 @@ jobs:
       - name: Commit helmfile-template.yaml
         run: |
           git switch -c temp-dump
-          git push origin temp-dump
+          git push origin temp-dump --force
 
   cleanup:
     needs: dump-helmfile-template
