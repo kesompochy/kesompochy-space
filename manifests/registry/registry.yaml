@@ -29,11 +29,11 @@ spec:
           volumeMounts:
             - name: auth
               mountPath: /auth
-              readonly: false
+              readOnly: false
       volumes:
         - name: auth
           secret:
-            secretName: registry-auth
+            secretName: registry-auth-secret
 
 ---
 apiVersion: v1
