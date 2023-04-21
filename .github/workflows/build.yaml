@@ -65,13 +65,16 @@ jobs:
         run: |
           NEW_VERSION="${{ steps.bump_version.outputs.NEW_VERSION }}"
           sed -i "s/kesompochy-space-app:v[0-9]*\.[0-9]*\.[0-9]*/kesompochy-space-app:$NEW_VERSION/g" manifests/kesompochy-space/kesompochy-space.yaml
+          cat manifests/kesompochy-space/kesompochy-space.yaml
 
       - name: Commit and push changes
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
+          git diff
           git add manifests/kesompochy-space/kesompochy-space.yaml
+          git status
           git commit -m "Update image tag to ${{ steps.bump_version.outputs.NEW_VERSION }}"
           git tag ${{ steps.bump_version.outputs.NEW_VERSION }}
-          git push --tags
-          git push
+          git push origin --tags
+          git push origin main
