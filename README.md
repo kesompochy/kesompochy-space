@@ -1,3 +1,3 @@
 # ふわふわ
 
-kesompochy-space-app:
+https://kesompochy.space

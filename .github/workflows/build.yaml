@@ -1,4 +1,4 @@
-name: Build-and-Push-and-Commit
+name: Build-and-Push
 on:
   push:
     branches:
@@ -78,5 +78,5 @@ jobs:
           git commit -m "Update image tag to ${{ steps.bump_version.outputs.NEW_VERSION }}"
           git tag ${{ steps.bump_version.outputs.NEW_VERSION }}
           git push origin --tags
-          git switch -c release
-          git push origin release --force
+          git switch -c temp-build
+          git push origin temp-build

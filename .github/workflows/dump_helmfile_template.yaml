@@ -1,4 +1,4 @@
-name: Release
+name: Dump-Helmfile-Template
 
 on:
   push:
@@ -44,10 +44,10 @@ jobs:
           cd manifests/helmfiles
           helmfile template > dumped_helmfile_template.yaml
           cd ../../
-          git add manifests/helmfiles/dumped_helmfile_template.yaml
+          git add -A
           git diff --quiet && git diff --staged --quiet || git commit -m "Update dumped_helmfile_template.yaml [skip ci]"
 
       - name: Commit helmfile-template.yaml
         run: |
-          git switch -c release
-          git push origin release --force
+          git switch -c temp-dump
+          git push origin temp-dump
