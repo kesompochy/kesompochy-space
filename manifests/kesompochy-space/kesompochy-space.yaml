@@ -61,6 +61,17 @@ spec:
                 name: nginx-service
                 port:
                   number: 80
+    - host: cd.kesompochy.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                namespace: argocd
+                port:
+                  number: 80
 
 ---
 apiVersion: cert-manager.io/v1
