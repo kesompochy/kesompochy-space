@@ -11,6 +11,7 @@ releases:
       - controller:
           config:
             ssl-port: "30443"
+            client_max_body_size: "500m"
           service:
             type: NodePort
             nodePorts:
