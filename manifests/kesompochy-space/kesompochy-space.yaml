@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kesompochy-space
-          image: containers.kesompochy.space/kesompochy-space-app:latest
+          image: containers.kesomgit pochy.space/kesompochy-space-app:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -26,7 +26,7 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: nginx-config
-              mountPath: /etc/nginx/nginx.conf
+              mountPath: /etc/nginx/conf.d/
       imagePullSecrets:
         - name: containers-kesompochy-space-credentials
       volumes:
@@ -59,7 +59,7 @@ data:
     http {
         server {
             listen 80;
-            location /app {
+            location / {
                 proxy_pass http://localhost:8080;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
