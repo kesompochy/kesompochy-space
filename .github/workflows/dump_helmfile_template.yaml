@@ -29,8 +29,13 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "GitHub Actions Bot"
 
+      - name: Check for changes in helmfiles
+        id: check_changes
+        run: |
+          git diff --quiet HEAD^ HEAD manifests/helmfiles || echo "::set-output name=has_changes::true"
+
       - name: Generate Helmfile template
-        if: "contains(github.event.head_commit.modified, 'manifests/helmfiles')"
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           VERSION=$(curl --silent https://api.github.com/repos/roboll/helmfile/releases/latest | jq '.tag_name' | sed 's/v//; s/"//g')
           wget https://github.com/roboll/helmfile/releases/download/v${VERSION}/helmfile_linux_amd64
