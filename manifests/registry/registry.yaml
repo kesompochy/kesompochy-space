@@ -29,6 +29,7 @@ spec:
           volumeMounts:
             - name: auth
               mountPath: /auth
+              readonly: false
       volumes:
         - name: auth
           secret:
