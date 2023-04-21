@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - manifests/**
+    paths-ignore:
+      - manifests/helmfiles/**
+      - app/**
   workflow_run:
     workflows: ["Build-and-Push", "Dump-Helmfile-Template"]
     types:

@@ -3,11 +3,11 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("ふわふわのアザラシ　セカンドシーズン　改");
+  res.send("ふわふわのアザラシ");
 });
 
 app.get("/toilet", (req, res) => {
-  res.send("kesompochyの排泄物コーナー どうでしょう");
+  res.send("kesompochyの排泄物コーナー");
 });
 
 const port = 80;
