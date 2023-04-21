@@ -30,7 +30,7 @@ jobs:
           git config --local user.name "GitHub Actions Bot"
 
       - name: Generate Helmfile template
-        #if: "contains(github.event.head_commit.modified, 'manifests/helmfiles')"
+        if: "contains(github.event.head_commit.modified, 'manifests/helmfiles')"
         run: |
           VERSION=$(curl --silent https://api.github.com/repos/roboll/helmfile/releases/latest | jq '.tag_name' | sed 's/v//; s/"//g')
           wget https://github.com/roboll/helmfile/releases/download/v${VERSION}/helmfile_linux_amd64
@@ -45,4 +45,5 @@ jobs:
       - name: Commit helmfile-template.yaml
         run: |
           git switch -c release
-          git push origin release --force
+          git merge main
+          git push origin release
