@@ -4,4 +4,3 @@ resources:
   - ./crds.yaml
   - ./helmfiles.yaml
   - ./registry.yaml
-  - ./argocd-image-updater.yaml
