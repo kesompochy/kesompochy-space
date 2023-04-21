@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: kesompochy-space-deploy
   labels:
-    app: nginx
+    app: kesompochy-space
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: kesompochy-space
   template:
     metadata:
       labels:
-        app: nginx
+        app: kesompochy-space
     spec:
       containers:
         - name: kesompochy-space
@@ -27,10 +27,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: kesompochy-space-svc
 spec:
   selector:
-    app: nginx
+    app: kesompochy-space
   ports:
     - protocol: TCP
       port: 80
@@ -58,7 +58,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: nginx-service
+                name: kesompochy-space-svc
                 port:
                   number: 80
 
