@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - manifests/**
+      - manifests/dump_helmfile_template.yaml
       - .github/workflows/**
   workflow_dispatch:
 
