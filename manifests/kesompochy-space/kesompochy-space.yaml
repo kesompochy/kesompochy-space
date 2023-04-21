@@ -87,13 +87,6 @@ spec:
                 name: nginx-service
                 port:
                   number: 80
-          - path: /.containers
-            pathType: exact
-            backend:
-              service:
-                name: private-registry
-                port:
-                  number: 5000
 
 ---
 apiVersion: cert-manager.io/v1
