@@ -17,9 +17,11 @@ spec:
       containers:
         - name: kesompochy-space
           image: containers.kesompochy.space/kesompochy-space-app:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
+      imagePullSecrets:
+        - name: containers-kesompochy-space-credentials
 
 ---
 apiVersion: v1
