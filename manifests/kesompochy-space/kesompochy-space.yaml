@@ -32,7 +32,6 @@ spec:
           volumeMounts:
             - name: nginx-config
               mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
       imagePullSecrets:
         - name: containers-kesompochy-space-credentials
       volumes:
@@ -65,7 +64,7 @@ data:
     http {
         server {
             listen 80;
-            location / {
+            location /app {
                 proxy_pass http://localhost:8080;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;

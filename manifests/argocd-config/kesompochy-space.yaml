@@ -21,6 +21,6 @@ spec:
       - CreateNamespace=true
       allowEmpty: true # 追加
       imageUpdaters: # 追加
-        - containerNames: ["nginx", "kesompochy-space"] # 対象となるコンテナの名前を指定
+        - containerNames: ["kesompochy-space"] # 対象となるコンテナの名前を指定
           autoUpdate:
             schedule: "* * * * *" # 自動更新のスケジュールを指定
