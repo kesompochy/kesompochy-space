@@ -1,3 +1,2 @@
 resources:
   - cert-manager.crds.yaml
-  - argocd-image-updater.yaml
