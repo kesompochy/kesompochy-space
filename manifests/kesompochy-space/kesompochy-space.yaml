@@ -30,12 +30,13 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: html
-              mountPath: /usr/share/nginx/html
+            - name: nginx-config
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
       imagePullSecrets:
         - name: containers-kesompochy-space-credentials
       volumes:
-        - name: html
+        - name: nginx-config
           configMap:
             name: nginx-configmap
 
@@ -59,18 +60,19 @@ metadata:
   name: nginx-configmap
 data:
   index.html: |
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Welcome to kesompochy-space!</title>
-        <meta charset="UTF-8">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1200773173710092"
-         crossorigin="anonymous"></script>
-      </head>
-      <body>
-        <h1>ふわふわのアザラシ</h1>
-      </body>
-    </html>
+    events {}
+
+    http {
+        server {
+            listen 80;
+            location /app {
+                proxy_pass http://localhost:8080;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            }
+        }
+    }
 
 ---
 apiVersion: networking.k8s.io/v1
