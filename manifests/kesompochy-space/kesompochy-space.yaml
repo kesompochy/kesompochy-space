@@ -23,7 +23,7 @@ spec:
             - name: html
               mountPath: /usr/share/nginx/html
         - name: kesompochy-space
-          image: kesompochy-space-app:latest
+          image: containers.kesompochy.space/kesompochy-space-app:latest
       imagePullSecrets:
         - name: containers-kesompochy-space-credentials
       volumes:

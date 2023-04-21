@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - app/**
+  workflow_dispatch:
+
+- name: Login to private registry
+  run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login containers.kesompochy.space -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin
+
+- name: Push Docker image
+  run: |
+    docker tag my-image containers.kesompochy.space/kesompochy-space-app:${{ github.sha }}
+    docker push containers.kesompochy.space/kesompochy-space-app:${{ github.sha }}
