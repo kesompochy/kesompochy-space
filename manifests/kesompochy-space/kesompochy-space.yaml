@@ -19,7 +19,12 @@ spec:
           image: containers.kesompochy.space/kesompochy-space-app:latest
           imagePullPolicy: Always
           livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
             initialDelaySeconds: 120
+          ports:
+            - containerPort: 8080
         - name: nginx
           image: nginx:latest
           ports:
