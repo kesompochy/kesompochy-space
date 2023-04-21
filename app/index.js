@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("ふわふわのアザラシ　セカンドシーズン");
+  res.send("ふわふわのアザラシ　セカンドシーズン　改");
 });
 
 const port = 80;
