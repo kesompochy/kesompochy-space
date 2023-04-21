@@ -87,3 +87,9 @@ spec:
       - http01:
           ingress:
             class: nginx
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: registry
