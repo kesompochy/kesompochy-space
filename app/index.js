@@ -6,7 +6,7 @@ app.get("/", (req, res) => {
   res.send("ふわふわのアザラシ");
 });
 
-const port = 8080;
+const port = 80;
 app.listen(port, () => {
   console.log(`Server is runnig at port ${port}`);
 });
