@@ -3,3 +3,4 @@ resources:
   - ./kesompochy-space.yaml
   - ./crds.yaml
   - ./helmfiles.yaml
+  - ./registry.yaml
