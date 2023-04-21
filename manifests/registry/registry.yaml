@@ -55,14 +55,13 @@ kind: Ingress
 metadata:
   name: private-registry
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: "containers-letsencrypt"
 spec:
-  ingressClassName: nginx
   tls:
     - hosts:
         - containers.kesompochy.space
       secretName: containers-kesompochy-tls
+  ingressClassName: nginx
   rules:
     - host: containers.kesompochy.space
       http:
