@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kesompochy-space
-          image: containers.kesompochy.space/kesompochy-space-app:v1.0.3
+          image: containers.kesompochy.space/kesompochy-space-app:v1.0.6
           imagePullPolicy: Always
           ports:
             - containerPort: 80
